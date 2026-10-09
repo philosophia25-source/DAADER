@@ -1,0 +1,55 @@
+const assert=require('node:assert/strict');
+const E=require('../docs/assets/inheritance-engine.js');
+const base={gender:'male',spouse:false,wives:1,father:false,mother:false,sons:0,daughters:0,brothers:0,sisters:0,siblingConditions:false,grandchildren:false,otherHeirs:false,special:false};
+let tested=0;
+function check(input,expected){const r=E.calculate({...base,...input});assert.equal(r.ok,true);assert.deepEqual(Object.fromEntries(r.rows.map(x=>[x.key,[x.fraction,x.count]])),Object.fromEntries(Object.entries(expected).map(([k,v])=>[k,[v[0],v[1]||1]])));tested++;}
+check({father:true,daughters:1},{father:['1/4'],daughter:['3/4']});
+check({mother:true,daughters:1},{mother:['1/4'],daughter:['3/4']});
+check({father:true,mother:true,daughters:1},{father:['1/5'],mother:['1/5'],daughter:['3/5']});
+check({father:true,mother:true,daughters:1,brothers:2,siblingConditions:true},{father:['5/24'],mother:['1/6'],daughter:['5/8']});
+check({spouse:true,father:true,sons:1},{wife:['1/8'],father:['1/6'],son:['17/24']});
+check({spouse:true,father:true,mother:true,sons:1},{wife:['1/8'],father:['1/6'],mother:['1/6'],son:['13/24']});
+check({gender:'female',spouse:true,father:true,mother:true,daughters:1},{husband:['1/4'],father:['1/6'],mother:['1/6'],daughter:['5/12']});
+check({gender:'female',spouse:true,father:true,mother:true,daughters:2},{husband:['1/4'],father:['1/6'],mother:['1/6'],daughter:['5/24',2]});
+check({spouse:true,father:true,mother:true,daughters:2},{wife:['1/8'],father:['1/6'],mother:['1/6'],daughter:['13/48',2]});
+check({spouse:true,father:true,daughters:1},{wife:['1/8'],father:['7/32'],daughter:['21/32']});
+check({gender:'female',spouse:true,mother:true,daughters:1},{husband:['1/4'],mother:['3/16'],daughter:['9/16']});
+check({father:true,daughters:2},{father:['1/5'],daughter:['2/5',2]});
+check({mother:true,daughters:2},{mother:['1/5'],daughter:['2/5',2]});
+check({father:true,mother:true,daughters:2},{father:['1/6'],mother:['1/6'],daughter:['1/3',2]});
+check({sons:1,daughters:1},{son:['2/3'],daughter:['1/3']});
+check({spouse:true,wives:2,sons:1,daughters:1},{wife:['1/16',2],son:['7/12'],daughter:['7/24']});
+check({spouse:true,wives:4,father:true,mother:true},{wife:['1/16',4],mother:['1/3'],father:['5/12']});
+check({gender:'female',spouse:true,father:true,mother:true},{husband:['1/2'],mother:['1/3'],father:['1/6']});
+check({father:true,mother:true},{mother:['1/3'],father:['2/3']});
+check({father:true,mother:true,sisters:4,siblingConditions:true},{mother:['1/6'],father:['5/6']});
+check({father:true,mother:true,brothers:1,sisters:2,siblingConditions:true},{mother:['1/6'],father:['5/6']});
+check({father:true,mother:true,sisters:3,siblingConditions:true},{mother:['1/3'],father:['2/3']});
+check({father:true,mother:true,brothers:2,siblingConditions:false},{mother:['1/3'],father:['2/3']});
+check({mother:true,brothers:2,siblingConditions:true},{mother:['1']});
+check({gender:'female',spouse:true},{husband:['1']});
+check({spouse:true},{wife:['1/4'],unallocated:['3/4']});
+check({spouse:true,wives:2},{wife:['1/8',2],unallocated:['3/4']});
+check({spouse:true,daughters:1},{wife:['1/8'],daughter:['7/8']});
+check({gender:'female',spouse:true,sons:1},{husband:['1/4'],son:['3/4']});
+check({father:true,grandchildren:true,sons:1},{father:['1/6'],son:['5/6']});
+for(const [input,code] of [[{grandchildren:true},'grandchildren'],[{father:true,grandchildren:true},'grandchildren'],[{otherHeirs:true,spouse:true},'otherHeirs'],[{special:true,father:true},'special'],[{},'noHeirs'],[{sons:-1},'invalid'],[{daughters:1.5},'invalid'],[{spouse:true,wives:5},'invalid']]){assert.equal(E.calculate({...base,...input}).code,code);tested++;}
+assert.equal(E.netEstate({gross:'۳۰۰٬۰۰۰٬۰۰۰',costs:'۰',debts:'۳۰٬۰۰۰٬۰۰۰',bequest:'۹۰٬۰۰۰٬۰۰۰'}).net,180000000);
+assert.equal(E.netEstate({gross:'300',debts:'30',bequest:'91'}).code,'bequest');
+assert.equal(E.netEstate({gross:'100',debts:'101'}).code,'deductions');
+assert.equal(E.netEstate({gross:'0'}).net,0);
+assert.throws(()=>E.amount('-1'));assert.throws(()=>E.amount('2.5'));assert.throws(()=>E.amount('99999999999999999'));
+tested+=7;
+const odd=E.allocations(E.calculate({...base,sons:1,daughters:1}).rows,100);
+assert.deepEqual(odd.map(r=>r.amount),[67,33]);tested++;
+let combinations=0;
+for(const gender of ['male','female'])for(const spouse of [false,true])for(const father of [false,true])for(const mother of [false,true])for(let sons=0;sons<=5;sons++)for(let daughters=0;daughters<=5;daughters++)for(const siblingConditions of [false,true]){
+ const r=E.calculate({...base,gender,spouse,father,mother,sons,daughters,brothers:2,siblingConditions});
+ if(!r.ok)continue;
+ assert.ok(Math.abs(r.rows.reduce((s,x)=>s+x.value*x.count,0)-1)<1e-12);
+ assert.equal(E.allocations(r.rows,100000003).reduce((s,x)=>s+x.amount,0),100000003);
+ if(spouse&&(sons+daughters)>0)assert.equal(r.rows.find(x=>['wife','husband'].includes(x.key)).fraction,gender==='male'?'1/8':'1/4');
+ if(sons>0)for(const key of ['father','mother'])if(r.rows.some(x=>x.key===key))assert.equal(r.rows.find(x=>x.key===key).fraction,'1/6');
+ combinations++;
+}
+console.log(`${tested} legal fixtures and validation checks, ${combinations} combinations passed.`);

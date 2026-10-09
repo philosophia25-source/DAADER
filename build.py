@@ -2,13 +2,14 @@ from pathlib import Path
 from html import escape
 import json
 import re
+from inheritance_page import LABELS as INHERITANCE, render as render_inheritance
 
 ROOT = Path(__file__).parent
 OUT = ROOT / 'docs'
 LANGS = ['fa', 'ar', 'en']
 ORIGIN = 'https://daader.ir'
 WHATSAPP_NUMBER = '989123084826'
-ASSET_VERSION = '20261009-mark'
+ASSET_VERSION = '20261009-inheritance'
 
 TEXT = {
  'fa': dict(dir='rtl', title='دادر | نادر جعفری، وکیل دادگستری', name='نادر جعفری', role='وکیل دادگستری', brand='دادر', home='خانه', services='حوزه‌های فعالیت', about='درباره من', journal='یادداشت‌های حقوقی', contact='ارتباط', whatsapp='WhatsApp', tagline='حقوق، با دقت و پیگیری', hero='تصمیم‌های مهم،<br>همراهی مطمئن.', intro='مشاوره و پیگیری امور خانواده، ارث و ملک', sub='نادر جعفری، وکیل دادگستری و دکترای حقوق خصوصی', explore='آشنایی با خدمات', read='مطالعه یادداشت‌ها', practice_label='حوزه‌های فعالیت', practice_title='برای مسئله شما،<br>مسیر حقوقی روشن.', practice_intro='هر پرونده از شناخت دقیق موضوع و بررسی مدارک آغاز می‌شود. دامنه همکاری و اقدامات لازم، متناسب با شرایط همان پرونده مشخص خواهد شد.', family='خانواده', inheritance='ارث', property='ملک', family_desc='بررسی اختلافات خانوادگی، طلاق، حقوق مالی و مسائل مربوط به فرزندان.', inheritance_desc='بررسی مدارک و مسائل وراثت، ترکه و اختلافات میان وراث.', property_desc='بررسی قراردادهای ملکی، مسائل مالکیت و اختلافات با شریک یا متصرف.', service_link='راهنمای شروع', about_label='درباره من', about_title='نادر جعفری', degree='دکتری حقوق خصوصی از دانشگاه تربیت مدرس', bio='در دادر، موضوع حقوقی شما با توجه به مدارک، هدف و شرایط عملی پرونده بررسی می‌شود. شناخت گزینه‌ها، حدود همکاری و ارتباط روشن، مبنای شروع کار است.', bio2='تمرکز این وب‌سایت بر مسائل حقوقی مرتبط با ایران است. برای درخواست‌های خارج از کشور نیز ابتدا امکان و حدود پیگیری بررسی می‌شود.', about_link='آشنایی بیشتر', approach='مسیر همکاری', steps=[('شرح موضوع','موضوع، هدف و وضعیت فعلی پرونده را به‌اختصار مطرح کنید.'),('بررسی مدارک','مدارک مرتبط و پرسش‌های اصلی بررسی می‌شود.'),('توافق و پیگیری','دامنه کار، حق‌الوکاله و نحوه گزارش‌دهی پیش از شروع مشخص می‌شود.')], journal_label='از یادداشت‌های حقوقی', journal_title='پیش از اقدام،<br>مسئله را روشن‌تر ببینید.', all_articles='همه یادداشت‌ها', article_link='مطالعه یادداشت', author='نویسنده', date='۹ اکتبر ۲۰۲۶', reading='۴ دقیقه مطالعه', contents='در این یادداشت', related='یادداشت‌های مرتبط', article_contact='برای بررسی موضوع خود', article_contact_desc='در پیام اول، موضوع و هدف خود را کوتاه توضیح دهید. ارسال مدارک پس از هماهنگی انجام شود.', disclaimer='این یادداشت برای آشنایی عمومی است. انتخاب مسیر پرونده به مدارک و شرایط آن بستگی دارد.', footer_title='از یک گفت‌وگوی روشن شروع کنیم.', footer_sub='موضوع خود را کوتاه مطرح کنید تا امکان بررسی و همکاری مشخص شود.', copyright='دادر · نادر جعفری', footer_note='خانواده، ارث و ملک', close='بستن', pending='اطلاعات تماس به‌زودی در دسترس قرار می‌گیرد.', contact_title='ارتباط با نادر جعفری', contact_desc='برای شروع، موضوع، محل پرونده و هدف خود را مختصر بنویسید.', send='گفت‌وگو در واتس‌اپ', email='ارسال ایمیل', menu='باز کردن فهرست', back='بازگشت به یادداشت‌ها', about_intro='شناخت وکیل، بخشی از تصمیم شماست.', about_sections=[('پیشینه علمی','دکتری حقوق خصوصی از دانشگاه تربیت مدرس. فعالیت علمی در حوزه حقوق رقابت و تنظیم‌گری نیز در وب‌سایت رقابت‌نامه منتشر می‌شود.'),('روش بررسی','ابتدا مدارک، خواسته و وضعیت فعلی موضوع بررسی می‌شود. سپس گزینه‌های قابل پیگیری و حدود اقدامات مشخص خواهد شد.'),('همکاری از خارج کشور','محل اقامت شما در بررسی نحوه ارتباط و تنظیم مدارک لحاظ می‌شود. امکان انجام اقدامات با وکالت و موارد نیازمند حضور، برای هر پرونده جداگانه ارزیابی می‌شود.')], competition='مشاهده رقابت‌نامه'),
@@ -133,7 +134,7 @@ def header(lang,path=''):
  t=TEXT[lang]
  langs=''.join(f'<a href="{url(l,path if l in alternate_languages(path) else 'articles/')}" lang="{l}" aria-label="{ {"fa":"فارسی","ar":"العربية","en":"English"}[l]}" {"aria-current=\"page\"" if l==lang else ""}>{l.upper()}</a>' for l in ['fa','en','ar'])
  caption='NADER JAFARY' if lang=='en' else 'DAADER'
- return f'''<a class="skip" href="#main">{t['journal']}</a><header class="site-header"><div class="nav-wrap"><a class="brand" href="{url(lang)}"><img class="brand-mark" src="/assets/daader-mark.svg?v={ASSET_VERSION}" alt="" width="38" height="38"><span class="brand-name">{t['brand']}</span><span class="brand-caption">{caption}</span></a><nav id="navigation" aria-label="{t['home']}"><a href="{url(lang)}#services">{t['services']}</a><a href="{url(lang,'about/')}">{t['about']}</a><a href="{url(lang,'articles/')}">{t['journal']}</a></nav><div class="nav-actions"><div class="languages">{langs}</div><button class="menu-button" aria-label="{t['menu']}" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button></div></div></header>'''
+ return f'''<a class="skip" href="#main">{t['journal']}</a><header class="site-header"><div class="nav-wrap"><a class="brand" href="{url(lang)}"><img class="brand-mark" src="/assets/daader-mark.svg?v={ASSET_VERSION}" alt="" width="38" height="38"><span class="brand-name">{t['brand']}</span><span class="brand-caption">{caption}</span></a><nav id="navigation" aria-label="{t['home']}"><a href="{url(lang)}#services">{t['services']}</a><a href="{url(lang,'about/')}">{t['about']}</a><a href="{url(lang,'articles/')}">{t['journal']}</a><a href="{url(lang,'tools/inheritance/')}">{INHERITANCE[lang]['nav']}</a></nav><div class="nav-actions"><div class="languages">{langs}</div><button class="menu-button" aria-label="{t['menu']}" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button></div></div></header>'''
 
 def footer(lang):
  t=TEXT[lang]
@@ -146,7 +147,7 @@ def contact_dock(lang):
 def shell(lang,title,desc,body,path=''):
  t=TEXT[lang]
  alts=''.join(f'<link rel="alternate" hreflang="{l}" href="{ORIGIN}{url(l,path)}">' for l in alternate_languages(path))
- page = f'''<!doctype html><html lang="{lang}" dir="{t['dir']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}</title><meta name="description" content="{e(desc)}"><meta name="theme-color" content="#F3F0E9"><link rel="canonical" href="{ORIGIN}{url(lang,path)}">{alts}<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v={ASSET_VERSION}"><link rel="preload" href="/assets/vazirmatn-400.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="/assets/style.css?v={ASSET_VERSION}"><script src="/assets/site.js?v={ASSET_VERSION}" defer></script></head><body data-lang="{lang}"><div class="site-scroll">{header(lang,path)}<main id="main">{body}</main>{footer(lang)}</div>{contact_dock(lang)}</body></html>'''
+ page = f'''<!doctype html><html lang="{lang}" dir="{t['dir']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}</title><meta name="description" content="{e(desc)}"><meta name="theme-color" content="#F3F0E9"><link rel="canonical" href="{ORIGIN}{url(lang,path)}">{alts}<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v={ASSET_VERSION}"><link rel="preload" href="/assets/vazirmatn-400.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="/assets/style.css?v={ASSET_VERSION}"><link rel="stylesheet" href="/assets/inheritance.css?v={ASSET_VERSION}"><script src="/assets/site.js?v={ASSET_VERSION}" defer></script></head><body data-lang="{lang}"><div class="site-scroll">{header(lang,path)}<main id="main">{body}</main>{footer(lang)}</div>{contact_dock(lang)}</body></html>'''
  return re.sub(r'<button([^>]*\bdata-contact[^>]*)>(.*?)</button>', lambda m: '<a'+m[1]+f' href="https://wa.me/{WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer">'+m[2]+'</a>', page, flags=re.S)
 
 def cards(lang,articles=None):
@@ -155,6 +156,16 @@ def cards(lang,articles=None):
  else: articles=[a for a in articles if lang in a['translations']]
  return ''.join(f'''<a class="note-card" href="{url(lang,'articles/'+a['slug']+'/')}"><span class="note-cat">{t[a['category']]}</span><h3>{a['translations'][lang][0]}</h3><p>{a['translations'][lang][1]}</p><span class="text-link">{t['article_link']}</span></a>''' for a in articles)
 
+def inheritance_tool(lang):
+ t=INHERITANCE[lang]
+ page=shell(lang,t['title']+' | '+TEXT[lang]['brand'],t['description'],render_inheritance(lang,ASSET_VERSION),'tools/inheritance/')
+ schema={'@context':'https://schema.org','@type':'WebApplication','name':t['title'],'description':t['description'],'url':ORIGIN+url(lang,'tools/inheritance/'),'inLanguage':lang,'applicationCategory':'UtilitiesApplication','operatingSystem':'Any','isAccessibleForFree':True,'author':{'@type':'Person','name':TEXT[lang]['name']}}
+ return page.replace('</head>','<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script></head>')
+
+def tool_teaser(lang):
+ t=INHERITANCE[lang]
+ return f'''<section class="calc-tool-band wrap"><div class="calc-tool-teaser"><div><span class="eyebrow">{t['kicker']}</span><h2>{t['title']}</h2><p>{t['description']}</p></div><a class="text-link" href="{url(lang,'tools/inheritance/')}">{t['nav']} ↗</a></div></section>'''
+
 def home(lang):
  t=TEXT[lang]
  name_role=t['name']+(' · ' if lang=='en' else '، ')+t['role']
@@ -162,7 +173,7 @@ def home(lang):
  arrow='←' if t['dir']=='rtl' else '→'
  service_cards=''.join(f'''<a class="service-card" href="{url(lang,'articles/'+a['slug']+'/')}"><span class="service-number" aria-hidden="true">{f'{i+1:02}'.translate(digits)}</span><h3>{t[a['category']]}</h3><p>{t[a['category']+'_desc']}</p><span class="text-link">{t['service_link']} <span aria-hidden="true">{arrow}</span></span></a>''' for i,a in enumerate(ARTICLES[:3]))
  steps=''.join(f'<div class="step"><span class="step-no">0{i+1}</span><h3>{s[0]}</h3><p>{s[1]}</p></div>' for i,s in enumerate(t['steps']))
- return shell(lang,t['title'],t['intro'],f'''<section class="hero"><div class="hero-copy"><p class="hero-kicker">{name_role}</p><h1>{t['hero']}</h1><p class="hero-intro">{t['intro']}</p><p class="hero-sub">{t['degree']}</p><a class="button primary" href="#services">{t['explore']}</a></div><figure class="hero-photo"><img class="hero-image" src="/assets/courthouse-entrance.webp" alt="" fetchpriority="high" width="1536" height="1024"></figure></section><section class="practice wrap" id="services"><h2 class="sr-only">{t['practice_label']}</h2><div class="services-grid">{service_cards}</div></section><section class="about-band"><div class="wrap about-grid"><div class="about-heading"><span class="eyebrow">{t['about_label']}</span><h2>{t['about_title']}</h2><p class="degree">{t['degree']}</p></div><div class="about-copy"><p>{t['bio']}</p><a class="text-link" href="{url(lang,'about/')}">{t['about_link']} <span aria-hidden="true">{arrow}</span></a></div></div></section><section class="process section wrap"><div class="slim-heading"><span class="eyebrow">{t['approach']}</span><span class="section-rule"></span></div><div class="steps-grid">{steps}</div></section><section class="journal-section section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{t['journal_label']}</span><h2>{t['journal_title']}</h2></div><a class="text-link" href="{url(lang,'articles/')}">{t['all_articles']}</a></div><div class="notes-grid">{cards(lang)}</div></div></section>''')
+ return shell(lang,t['title'],t['intro'],f'''<section class="hero"><div class="hero-copy"><p class="hero-kicker">{name_role}</p><h1>{t['hero']}</h1><p class="hero-intro">{t['intro']}</p><p class="hero-sub">{t['degree']}</p><a class="button primary" href="#services">{t['explore']}</a></div><figure class="hero-photo"><img class="hero-image" src="/assets/courthouse-entrance.webp" alt="" fetchpriority="high" width="1536" height="1024"></figure></section><section class="practice wrap" id="services"><h2 class="sr-only">{t['practice_label']}</h2><div class="services-grid">{service_cards}</div></section><section class="about-band"><div class="wrap about-grid"><div class="about-heading"><span class="eyebrow">{t['about_label']}</span><h2>{t['about_title']}</h2><p class="degree">{t['degree']}</p></div><div class="about-copy"><p>{t['bio']}</p><a class="text-link" href="{url(lang,'about/')}">{t['about_link']} <span aria-hidden="true">{arrow}</span></a></div></div></section><section class="process section wrap"><div class="slim-heading"><span class="eyebrow">{t['approach']}</span><span class="section-rule"></span></div><div class="steps-grid">{steps}</div></section>{tool_teaser(lang)}<section class="journal-section section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{t['journal_label']}</span><h2>{t['journal_title']}</h2></div><a class="text-link" href="{url(lang,'articles/')}">{t['all_articles']}</a></div><div class="notes-grid">{cards(lang)}</div></div></section>''')
 
 def index(lang):
  t=TEXT[lang]
@@ -177,6 +188,7 @@ def article(lang,a):
  t=TEXT[lang];title,desc,sections=a['translations'][lang]
  toc=''.join(f'<a href="#part-{i}">{s[0]}</a>' for i,s in enumerate(sections))
  content=a.get('intro_html',{}).get(lang,'')+''.join(f'<section id="part-{i}"><h2>{s[0]}</h2>'+ (s[1] if a.get('raw_html') else '<p>'+s[1]+'</p>')+'</section>' for i,s in enumerate(sections))
+ if a['category']=='inheritance': content='<div class="calc-article-link"><a href="'+url(lang,'tools/inheritance/')+'">'+INHERITANCE[lang]['nav']+' ↗</a></div>'+content
  date=a.get('date',{}).get(lang,t['date']); reading=a.get('reading',{}).get(lang,t['reading'])
  page=shell(lang,title+' | '+t['brand'],desc,f'''<header class="article-head wrap"><a class="breadcrumb" href="{url(lang,'articles/')}">{t['journal']}</a><span class="note-cat">{t[a['category']]}</span><h1>{title}</h1><p>{desc}</p><div class="article-meta"><span>{t['name']}</span><span>{date}</span><span>{reading}</span></div></header><div class="article-surface"><div class="wrap article-layout"><article class="prose">{content}<div class="article-disclaimer">{t['disclaimer']}</div><section class="article-end-contact"><span class="eyebrow">{t['article_contact']}</span><p>{t['article_contact_desc']}</p><button class="button gold" data-contact>{icon('chat')}{t['whatsapp']}</button></section></article><aside class="article-sidebar"><div class="sidebar-inner"><h2>{t['contents']}</h2><nav>{toc}</nav><div class="author-card"><span class="mini-monogram">NJ</span><h3>{t['name']}</h3><p>{t['role']}</p><a href="{url(lang,'about/')}">{t['about']}</a></div><button class="button sidebar-contact" data-contact>{icon('chat')}{t['whatsapp']}</button></div></aside></div></div><section class="section wrap"><div class="slim-heading"><h2>{t['related']}</h2></div><div class="notes-grid two">{cards(lang,[x for x in available_articles(lang) if x!=a][:2])}</div></section>''','articles/'+a['slug']+'/')
  if a.get('raw_html'):
@@ -190,12 +202,13 @@ for lang in LANGS:
  write(Path(lang)/'index.html',home(lang))
  write(Path(lang)/'about/index.html',about(lang))
  write(Path(lang)/'articles/index.html',index(lang))
+ write(Path(lang)/'tools/inheritance/index.html',inheritance_tool(lang))
  for a in available_articles(lang):write(Path(lang)/'articles'/a['slug']/'index.html',article(lang,a))
 write(Path('index.html'),home('fa'))
 write(Path('assets/contact.json'),json.dumps({'whatsapp':WHATSAPP_NUMBER,'email':''})+'\n')
 write(Path('404.html'),'<html lang="fa" dir="rtl"><meta charset="utf-8"><title>صفحه پیدا نشد | دادر</title><link rel="stylesheet" href="/assets/style.css"><main class="page-head wrap"><h1>صفحه پیدا نشد</h1><a class="button gold" href="/fa/">بازگشت به دادر</a></main></html>')
 write(Path('robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n')
-paths=['']+[f'{l}/{p}' for l in LANGS for p in ['', 'about/', 'articles/']+[f'articles/{a["slug"]}/' for a in available_articles(l)]]
+paths=['']+[f'{l}/{p}' for l in LANGS for p in ['', 'about/', 'articles/', 'tools/inheritance/']+[f'articles/{a["slug"]}/' for a in available_articles(l)]]
 write(Path('sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}/{p}</loc></url>' for p in paths)+'</urlset>')
 write(Path('CNAME'),'daader.ir\n')
 write(Path('.nojekyll'),'')
