@@ -56,13 +56,14 @@
  }
  form.addEventListener('submit',ev=>{ev.preventDefault();calculate();});
  for(const event of ['input','change'])form.addEventListener(event,()=>{hideResult();sync();});
- form.addEventListener('reset',()=>{queueMicrotask(()=>{hideResult();$('calc-stale').hidden=true;sync();});});
+ // The native reset completes after its event, so sync in the next task.
+ form.addEventListener('reset',()=>{setTimeout(()=>{hideResult();$('calc-stale').hidden=true;sync();},0);});
  document.querySelectorAll('[data-example]').forEach(button=>button.addEventListener('click',()=>{
-   form.reset();queueMicrotask(()=>{
+   form.reset();setTimeout(()=>{
      $('father').checked=true;
      if(button.dataset.example==='daughter')$('daughters').value='1';else{$('sons').value='1';$('spouse').checked=true;}
      sync();calculate();
-   });
+   },0);
  }));
  $('calc-copy').addEventListener('click',async()=>{if(!lastCopy)return;try{await navigator.clipboard.writeText(lastCopy);$('copy-status').textContent=T.copied;}catch{$('copy-status').textContent=T.copyFailed;}});
  sync();
