@@ -95,7 +95,8 @@ def markdown_blocks(text):
 divorce=dict(slug='divorce-in-iran',category='family',raw_html=True,intro_html={},reading={},date={},translations={})
 article_labels={
  'fa':('طلاق در ایران، مسیرهای درخواست و مراحل پیگیری در دادگاه','راهنمای درخواست طلاق از سوی زن یا مرد، طلاق توافقی و وکالت در طلاق، با بررسی حقوق مالی، مدارک و مهلت‌ها.','حدود ۱۵ دقیقه مطالعه','به‌روزرسانی ۹ اکتبر ۲۰۲۶'),
- 'ar':('الطلاق في إيران، طرق تقديم الطلب ومراحل الإجراءات أمام المحكمة','دليل للطلاق بطلب الزوج أو الزوجة، والطلاق بالاتفاق والوكالة في الطلاق وفق القانون الإيراني، مع الحقوق المالية والمستندات والمواعيد.','قراءة نحو ١٥ دقيقة','آخر تحديث ٩ أكتوبر ٢٠٢٦')
+ 'ar':('الطلاق في إيران، طرق تقديم الطلب ومراحل الإجراءات أمام المحكمة','دليل للطلاق بطلب الزوج أو الزوجة، والطلاق بالاتفاق والوكالة في الطلاق وفق القانون الإيراني، مع الحقوق المالية والمستندات والمواعيد.','قراءة نحو ١٥ دقيقة','آخر تحديث ٩ أكتوبر ٢٠٢٦'),
+ 'en':('Divorce in Iran, application routes and court procedures','A guide to divorce under Iranian law, including applications by either spouse, mutual agreement, powers of attorney, financial rights, evidence and deadlines.','About 15 minutes to read','Updated 9 October 2026')
 }
 for lang,labels in article_labels.items():
  source=(ROOT/'content'/lang/'divorce-in-iran.md').read_text(encoding='utf8')
