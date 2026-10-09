@@ -8,7 +8,7 @@ OUT = ROOT / 'docs'
 LANGS = ['fa', 'ar', 'en']
 ORIGIN = 'https://daader.ir'
 WHATSAPP_NUMBER = '989123084826'
-ASSET_VERSION = '20261009-integrated'
+ASSET_VERSION = '20261009-divorce'
 
 TEXT = {
  'fa': dict(dir='rtl', title='دادر | نادر جعفری، وکیل دادگستری', name='نادر جعفری', role='وکیل دادگستری', brand='دادر', home='خانه', services='حوزه‌های فعالیت', about='درباره من', journal='یادداشت‌های حقوقی', contact='ارتباط', whatsapp='WhatsApp', tagline='حقوق، با دقت و پیگیری', hero='تصمیم‌های مهم،<br>همراهی مطمئن.', intro='مشاوره و پیگیری امور خانواده، ارث و ملک', sub='نادر جعفری، وکیل دادگستری و دکترای حقوق خصوصی', explore='آشنایی با خدمات', read='مطالعه یادداشت‌ها', practice_label='حوزه‌های فعالیت', practice_title='برای مسئله شما،<br>مسیر حقوقی روشن.', practice_intro='هر پرونده از شناخت دقیق موضوع و بررسی مدارک آغاز می‌شود. دامنه همکاری و اقدامات لازم، متناسب با شرایط همان پرونده مشخص خواهد شد.', family='خانواده', inheritance='ارث', property='ملک', family_desc='بررسی اختلافات خانوادگی، طلاق، حقوق مالی و مسائل مربوط به فرزندان.', inheritance_desc='بررسی مدارک و مسائل وراثت، ترکه و اختلافات میان وراث.', property_desc='بررسی قراردادهای ملکی، مسائل مالکیت و اختلافات با شریک یا متصرف.', service_link='راهنمای شروع', about_label='درباره من', about_title='نادر جعفری', degree='دکتری حقوق خصوصی از دانشگاه تربیت مدرس', bio='در دادر، موضوع حقوقی شما با توجه به مدارک، هدف و شرایط عملی پرونده بررسی می‌شود. شناخت گزینه‌ها، حدود همکاری و ارتباط روشن، مبنای شروع کار است.', bio2='تمرکز این وب‌سایت بر مسائل حقوقی مرتبط با ایران است. برای درخواست‌های خارج از کشور نیز ابتدا امکان و حدود پیگیری بررسی می‌شود.', about_link='آشنایی بیشتر', approach='مسیر همکاری', steps=[('شرح موضوع','موضوع، هدف و وضعیت فعلی پرونده را به‌اختصار مطرح کنید.'),('بررسی مدارک','مدارک مرتبط و پرسش‌های اصلی بررسی می‌شود.'),('توافق و پیگیری','دامنه کار، حق‌الوکاله و نحوه گزارش‌دهی پیش از شروع مشخص می‌شود.')], journal_label='از یادداشت‌های حقوقی', journal_title='پیش از اقدام،<br>مسئله را روشن‌تر ببینید.', all_articles='همه یادداشت‌ها', article_link='مطالعه یادداشت', author='نویسنده', date='۹ اکتبر ۲۰۲۶', reading='۴ دقیقه مطالعه', contents='در این یادداشت', related='یادداشت‌های مرتبط', article_contact='برای بررسی موضوع خود', article_contact_desc='در پیام اول، موضوع و هدف خود را کوتاه توضیح دهید. ارسال مدارک پس از هماهنگی انجام شود.', disclaimer='این یادداشت برای آشنایی عمومی است. انتخاب مسیر پرونده به مدارک و شرایط آن بستگی دارد.', footer_title='از یک گفت‌وگوی روشن شروع کنیم.', footer_sub='موضوع خود را کوتاه مطرح کنید تا امکان بررسی و همکاری مشخص شود.', copyright='دادر · نادر جعفری', footer_note='خانواده، ارث و ملک', close='بستن', pending='اطلاعات تماس به‌زودی در دسترس قرار می‌گیرد.', contact_title='ارتباط با نادر جعفری', contact_desc='برای شروع، موضوع، محل پرونده و هدف خود را مختصر بنویسید.', send='گفت‌وگو در واتس‌اپ', email='ارسال ایمیل', menu='باز کردن فهرست', back='بازگشت به یادداشت‌ها', about_intro='شناخت وکیل، بخشی از تصمیم شماست.', about_sections=[('پیشینه علمی','دکتری حقوق خصوصی از دانشگاه تربیت مدرس. فعالیت علمی در حوزه حقوق رقابت و تنظیم‌گری نیز در وب‌سایت رقابت‌نامه منتشر می‌شود.'),('روش بررسی','ابتدا مدارک، خواسته و وضعیت فعلی موضوع بررسی می‌شود. سپس گزینه‌های قابل پیگیری و حدود اقدامات مشخص خواهد شد.'),('همکاری از خارج کشور','محل اقامت شما در بررسی نحوه ارتباط و تنظیم مدارک لحاظ می‌شود. امکان انجام اقدامات با وکالت و موارد نیازمند حضور، برای هر پرونده جداگانه ارزیابی می‌شود.')], competition='مشاهده رقابت‌نامه'),
@@ -67,6 +67,46 @@ ARTICLES = [
  ('Coordinate before signing abroad','Before registration or signature, review the wording with the person or authority expected to use it in Iran. Consular procedures, identity checks and signature authentication differ from whether the wording is legally sufficient for the intended action. Agree on reporting and expense records before work begins.')])})
 ]
 
+
+def markdown_inline(text):
+ text = escape(text,quote=True)
+ text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+ return re.sub(r'\[([^\]]+)\]\((https://[^\s)]+)\)', r'<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>', text)
+
+def markdown_blocks(text):
+ blocks=[]; paragraph=[]; items=[]
+ def flush():
+  if paragraph: blocks.append('<p>'+markdown_inline(' '.join(paragraph))+'</p>'); paragraph.clear()
+  if items: blocks.append('<ul>'+''.join('<li>'+markdown_inline(x)+'</li>' for x in items)+'</ul>'); items.clear()
+ for line in text.splitlines():
+  line=line.strip()
+  if not line: flush()
+  elif line.startswith('### '): flush(); blocks.append('<h3>'+markdown_inline(line[4:])+'</h3>')
+  elif line.startswith('- '):
+   if paragraph: flush()
+   items.append(line[2:])
+  elif line=='---': flush(); blocks.append('<hr>')
+  else:
+   if items: flush()
+   paragraph.append(line)
+ flush()
+ return ''.join(blocks)
+
+source=(ROOT/'content/fa/divorce-in-iran.md').read_text(encoding='utf8')
+parts=re.split(r'^## (.+)$', source, flags=re.M)
+intro=re.sub(r'^# .+\n\n\*\*.+?\*\*\n\n', '', parts[0], count=1, flags=re.S)
+sections=[(parts[i],markdown_blocks(parts[i+1])) for i in range(1,len(parts),2)]
+ARTICLES.append(dict(slug='divorce-in-iran',category='family',raw_html=True,intro_html=markdown_blocks(intro),reading={'fa':'حدود ۱۵ دقیقه مطالعه'},date={'fa':'به‌روزرسانی ۹ اکتبر ۲۰۲۶'},translations={'fa':('طلاق در ایران، مسیرهای درخواست و مراحل پیگیری در دادگاه','راهنمای درخواست طلاق از سوی زن یا مرد، طلاق توافقی و وکالت در طلاق، با بررسی حقوق مالی، مدارک و مهلت‌ها.',sections)}))
+
+def available_articles(lang):
+ return [a for a in ARTICLES if lang in a['translations']]
+
+def alternate_languages(path):
+ if path.startswith('articles/'):
+  match=next((a for a in ARTICLES if path=='articles/'+a['slug']+'/'),None)
+  if match: return [l for l in LANGS if l in match['translations']]
+ return LANGS
+
 ICONS={
  'family':'<circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 21v-4a6 6 0 0 1 12 0v4m1-7a5 5 0 0 1 5 5v2"/>',
  'inheritance':'<path d="M7 3h11a2 2 0 0 1 2 2v16H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm0 0v18M11 8h5m-5 4h5m-5 4h3"/>',
@@ -80,7 +120,7 @@ def e(s): return escape(s,quote=True)
 
 def header(lang,path=''):
  t=TEXT[lang]
- langs=''.join(f'<a href="{url(l,path)}" lang="{l}" aria-label="{ {"fa":"فارسی","ar":"العربية","en":"English"}[l]}" {"aria-current=\"page\"" if l==lang else ""}>{l.upper()}</a>' for l in ['fa','en','ar'])
+ langs=''.join(f'<a href="{url(l,path if l in alternate_languages(path) else 'articles/')}" lang="{l}" aria-label="{ {"fa":"فارسی","ar":"العربية","en":"English"}[l]}" {"aria-current=\"page\"" if l==lang else ""}>{l.upper()}</a>' for l in ['fa','en','ar'])
  caption='NADER JAFARY' if lang=='en' else 'DAADER'
  return f'''<a class="skip" href="#main">{t['journal']}</a><header class="site-header"><div class="nav-wrap"><a class="brand" href="{url(lang)}"><span class="brand-name">{t['brand']}</span><span class="brand-caption">{caption}</span></a><nav id="navigation" aria-label="{t['home']}"><a href="{url(lang)}#services">{t['services']}</a><a href="{url(lang,'about/')}">{t['about']}</a><a href="{url(lang,'articles/')}">{t['journal']}</a></nav><div class="nav-actions"><div class="languages">{langs}</div><button class="menu-button" aria-label="{t['menu']}" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button></div></div></header>'''
 
@@ -94,12 +134,14 @@ def contact_dock(lang):
 
 def shell(lang,title,desc,body,path=''):
  t=TEXT[lang]
- alts=''.join(f'<link rel="alternate" hreflang="{l}" href="{ORIGIN}{url(l,path)}">' for l in LANGS)
+ alts=''.join(f'<link rel="alternate" hreflang="{l}" href="{ORIGIN}{url(l,path)}">' for l in alternate_languages(path))
  page = f'''<!doctype html><html lang="{lang}" dir="{t['dir']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}</title><meta name="description" content="{e(desc)}"><meta name="theme-color" content="#F3F0E9"><link rel="canonical" href="{ORIGIN}{url(lang,path)}">{alts}<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v={ASSET_VERSION}"><link rel="preload" href="/assets/vazirmatn-400.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="/assets/style.css?v={ASSET_VERSION}"><script src="/assets/site.js?v={ASSET_VERSION}" defer></script></head><body data-lang="{lang}"><div class="site-scroll">{header(lang,path)}<main id="main">{body}</main>{footer(lang)}</div>{contact_dock(lang)}</body></html>'''
  return re.sub(r'<button([^>]*\bdata-contact[^>]*)>(.*?)</button>', lambda m: '<a'+m[1]+f' href="https://wa.me/{WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer">'+m[2]+'</a>', page, flags=re.S)
 
-def cards(lang,articles=ARTICLES):
+def cards(lang,articles=None):
  t=TEXT[lang]
+ if articles is None: articles=sorted(available_articles(lang),key=lambda a:a.get('raw_html',False),reverse=True)
+ else: articles=[a for a in articles if lang in a['translations']]
  return ''.join(f'''<a class="note-card" href="{url(lang,'articles/'+a['slug']+'/')}"><span class="note-cat">{t[a['category']]}</span><h3>{a['translations'][lang][0]}</h3><p>{a['translations'][lang][1]}</p><span class="text-link">{t['article_link']}</span></a>''' for a in articles)
 
 def home(lang):
@@ -107,7 +149,7 @@ def home(lang):
  name_role=t['name']+(' · ' if lang=='en' else '، ')+t['role']
  digits=str.maketrans('0123456789','۰۱۲۳۴۵۶۷۸۹') if lang=='fa' else str.maketrans('0123456789','٠١٢٣٤٥٦٧٨٩') if lang=='ar' else {}
  arrow='←' if t['dir']=='rtl' else '→'
- service_cards=''.join(f'''<a class="service-card" href="{url(lang,'articles/'+a['slug']+'/')}"><span class="service-number" aria-hidden="true">{f'{i+1:02}'.translate(digits)}</span><h3>{t[a['category']]}</h3><p>{t[a['category']+'_desc']}</p><span class="text-link">{t['service_link']} <span aria-hidden="true">{arrow}</span></span></a>''' for i,a in enumerate(ARTICLES))
+ service_cards=''.join(f'''<a class="service-card" href="{url(lang,'articles/'+a['slug']+'/')}"><span class="service-number" aria-hidden="true">{f'{i+1:02}'.translate(digits)}</span><h3>{t[a['category']]}</h3><p>{t[a['category']+'_desc']}</p><span class="text-link">{t['service_link']} <span aria-hidden="true">{arrow}</span></span></a>''' for i,a in enumerate(ARTICLES[:3]))
  steps=''.join(f'<div class="step"><span class="step-no">0{i+1}</span><h3>{s[0]}</h3><p>{s[1]}</p></div>' for i,s in enumerate(t['steps']))
  return shell(lang,t['title'],t['intro'],f'''<section class="hero"><div class="hero-copy"><p class="hero-kicker">{name_role}</p><h1>{t['hero']}</h1><p class="hero-intro">{t['intro']}</p><p class="hero-sub">{t['degree']}</p><a class="button primary" href="#services">{t['explore']}</a></div><figure class="hero-photo"><img class="hero-image" src="/assets/courthouse-entrance.webp" alt="" fetchpriority="high" width="1536" height="1024"></figure></section><section class="practice wrap" id="services"><h2 class="sr-only">{t['practice_label']}</h2><div class="services-grid">{service_cards}</div></section><section class="about-band"><div class="wrap about-grid"><div class="about-heading"><span class="eyebrow">{t['about_label']}</span><h2>{t['about_title']}</h2><p class="degree">{t['degree']}</p></div><div class="about-copy"><p>{t['bio']}</p><a class="text-link" href="{url(lang,'about/')}">{t['about_link']} <span aria-hidden="true">{arrow}</span></a></div></div></section><section class="process section wrap"><div class="slim-heading"><span class="eyebrow">{t['approach']}</span><span class="section-rule"></span></div><div class="steps-grid">{steps}</div></section><section class="journal-section section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">{t['journal_label']}</span><h2>{t['journal_title']}</h2></div><a class="text-link" href="{url(lang,'articles/')}">{t['all_articles']}</a></div><div class="notes-grid">{cards(lang)}</div></div></section>''')
 
@@ -123,8 +165,13 @@ def about(lang):
 def article(lang,a):
  t=TEXT[lang];title,desc,sections=a['translations'][lang]
  toc=''.join(f'<a href="#part-{i}">{s[0]}</a>' for i,s in enumerate(sections))
- content=''.join(f'<section id="part-{i}"><h2>{s[0]}</h2><p>{s[1]}</p></section>' for i,s in enumerate(sections))
- return shell(lang,title+' | '+t['brand'],desc,f'''<header class="article-head wrap"><a class="breadcrumb" href="{url(lang,'articles/')}">{t['journal']}</a><span class="note-cat">{t[a['category']]}</span><h1>{title}</h1><p>{desc}</p><div class="article-meta"><span>{t['name']}</span><span>{t['date']}</span><span>{t['reading']}</span></div></header><div class="article-surface"><div class="wrap article-layout"><article class="prose">{content}<div class="article-disclaimer">{t['disclaimer']}</div><section class="article-end-contact"><span class="eyebrow">{t['article_contact']}</span><p>{t['article_contact_desc']}</p><button class="button gold" data-contact>{icon('chat')}{t['whatsapp']}</button></section></article><aside class="article-sidebar"><div class="sidebar-inner"><h2>{t['contents']}</h2><nav>{toc}</nav><div class="author-card"><span class="mini-monogram">NJ</span><h3>{t['name']}</h3><p>{t['role']}</p><a href="{url(lang,'about/')}">{t['about']}</a></div><button class="button sidebar-contact" data-contact>{icon('chat')}{t['whatsapp']}</button></div></aside></div></div><section class="section wrap"><div class="slim-heading"><h2>{t['related']}</h2></div><div class="notes-grid two">{cards(lang,[x for x in ARTICLES if x!=a])}</div></section>''','articles/'+a['slug']+'/')
+ content=a.get('intro_html','')+''.join(f'<section id="part-{i}"><h2>{s[0]}</h2>'+ (s[1] if a.get('raw_html') else '<p>'+s[1]+'</p>')+'</section>' for i,s in enumerate(sections))
+ date=a.get('date',{}).get(lang,t['date']); reading=a.get('reading',{}).get(lang,t['reading'])
+ page=shell(lang,title+' | '+t['brand'],desc,f'''<header class="article-head wrap"><a class="breadcrumb" href="{url(lang,'articles/')}">{t['journal']}</a><span class="note-cat">{t[a['category']]}</span><h1>{title}</h1><p>{desc}</p><div class="article-meta"><span>{t['name']}</span><span>{date}</span><span>{reading}</span></div></header><div class="article-surface"><div class="wrap article-layout"><article class="prose">{content}<div class="article-disclaimer">{t['disclaimer']}</div><section class="article-end-contact"><span class="eyebrow">{t['article_contact']}</span><p>{t['article_contact_desc']}</p><button class="button gold" data-contact>{icon('chat')}{t['whatsapp']}</button></section></article><aside class="article-sidebar"><div class="sidebar-inner"><h2>{t['contents']}</h2><nav>{toc}</nav><div class="author-card"><span class="mini-monogram">NJ</span><h3>{t['name']}</h3><p>{t['role']}</p><a href="{url(lang,'about/')}">{t['about']}</a></div><button class="button sidebar-contact" data-contact>{icon('chat')}{t['whatsapp']}</button></div></aside></div></div><section class="section wrap"><div class="slim-heading"><h2>{t['related']}</h2></div><div class="notes-grid two">{cards(lang,[x for x in available_articles(lang) if x!=a][:2])}</div></section>''','articles/'+a['slug']+'/')
+ if a.get('raw_html'):
+  data={'@context':'https://schema.org','@type':'Article','headline':title,'description':desc,'inLanguage':lang,'author':{'@type':'Person','name':t['name'],'url':ORIGIN+url(lang,'about/')},'datePublished':'2026-10-09','dateModified':'2026-10-09','mainEntityOfPage':ORIGIN+url(lang,'articles/'+a['slug']+'/')}
+  page=page.replace('</head>','<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False).replace('<','\\u003c')+'</script></head>')
+ return page
 
 def write(path,content):
  p=OUT/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(content,encoding='utf8')
@@ -132,13 +179,13 @@ for lang in LANGS:
  write(Path(lang)/'index.html',home(lang))
  write(Path(lang)/'about/index.html',about(lang))
  write(Path(lang)/'articles/index.html',index(lang))
- for a in ARTICLES:write(Path(lang)/'articles'/a['slug']/'index.html',article(lang,a))
+ for a in available_articles(lang):write(Path(lang)/'articles'/a['slug']/'index.html',article(lang,a))
 write(Path('index.html'),home('fa'))
 write(Path('assets/contact.json'),json.dumps({'whatsapp':WHATSAPP_NUMBER,'email':''})+'\n')
 write(Path('404.html'),'<html lang="fa" dir="rtl"><meta charset="utf-8"><title>صفحه پیدا نشد | دادر</title><link rel="stylesheet" href="/assets/style.css"><main class="page-head wrap"><h1>صفحه پیدا نشد</h1><a class="button gold" href="/fa/">بازگشت به دادر</a></main></html>')
 write(Path('robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n')
-paths=['']+[f'{l}/{p}' for l in LANGS for p in ['', 'about/', 'articles/']+[f'articles/{a["slug"]}/' for a in ARTICLES]]
+paths=['']+[f'{l}/{p}' for l in LANGS for p in ['', 'about/', 'articles/']+[f'articles/{a["slug"]}/' for a in available_articles(l)]]
 write(Path('sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}/{p}</loc></url>' for p in paths)+'</urlset>')
 write(Path('CNAME'),'daader.ir\n')
 write(Path('.nojekyll'),'')
-print('Created homepage, about, article index and 3 legal notes in 3 languages.')
+print('Created multilingual pages and locale-specific legal articles.')

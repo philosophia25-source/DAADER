@@ -31,3 +31,7 @@ footer{border-top:1px solid var(--line)}.footer-top{padding-block:65px;display:f
 @media(max-width:1100px) and (min-width:821px){.hero-copy{width:52%;padding:48px 36px}}
 @media(max-width:820px){.hero{min-height:650px;display:block}.hero-photo{height:auto}.hero-image{object-position:32% 50%}.hero::before{background:linear-gradient(180deg,rgba(243,240,233,.96) 0%,rgba(243,240,233,.92) 40%,rgba(243,240,233,.76) 60%,rgba(243,240,233,.12) 85%,rgba(243,240,233,.03) 100%)}.hero-copy{width:100%;max-width:620px;margin-inline:auto;padding:46px 28px 235px}}
 @media(max-width:540px){.hero{min-height:650px}.hero-copy{padding:35px 24px 215px}.hero-image{object-position:28% 50%}}
+
+/* Long-form legal articles retain lists, subheadings and source links. */
+.prose h3{font-size:1.08rem;font-weight:600;margin:26px 0 12px;color:var(--ink)}
+.prose p+p{margin-top:16px}.prose ul{padding-inline-start:24px;margin:18px 0 24px;color:#4a5249}.prose li{margin-block:8px}.prose strong{font-weight:600;color:var(--ink)}.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}.prose hr{border:0;border-top:1px solid var(--line);margin-block:30px}

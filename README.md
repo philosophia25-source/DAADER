@@ -23,3 +23,7 @@ The legal notes are introductory draft content for the owner to review. courthou
 Version `20261009-integrated` uses `docs/assets/courthouse-entrance.webp` as one full-section decorative image behind the copy on desktop and mobile. CSS gradients maintain readable copy without splitting the photo into a separate mobile row. The image is conceptual architecture, not a photograph of a named courthouse or the lawyer's office.
 
 Generated using the built-in image generation tool. Prompt: an editorial photograph of a restrained limestone courthouse entrance, stone steps and tall doors, soft daylight, architectural detail on the left and a quiet pale stone wall on the right for HTML text. No emblems, lettering, people, scales, gavels, palace or fantasy architecture.
+
+## Persian divorce guide
+
+The full article source is `content/fa/divorce-in-iran.md`. The generator publishes it at `/fa/articles/divorce-in-iran/`, with a contents sidebar and native WhatsApp links, and lists it on the Persian homepage and journal. Language links fall back to the relevant journal where no translation exists. The sitemap and alternate-language metadata include only published translations.
