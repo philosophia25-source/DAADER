@@ -35,3 +35,6 @@ footer{border-top:1px solid var(--line)}.footer-top{padding-block:65px;display:f
 /* Long-form legal articles retain lists, subheadings and source links. */
 .prose h3{font-size:1.08rem;font-weight:600;margin:26px 0 12px;color:var(--ink)}
 .prose p+p{margin-top:16px}.prose ul{padding-inline-start:24px;margin:18px 0 24px;color:#4a5249}.prose li{margin-block:8px}.prose strong{font-weight:600;color:var(--ink)}.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}.prose hr{border:0;border-top:1px solid var(--line);margin-block:30px}
+
+/* DAADER monogram */
+.brand-mark{display:block;width:38px;height:38px;flex-shrink:0}.brand{gap:12px}@media(max-width:480px){.brand-mark{width:30px;height:30px}.brand{gap:8px}.brand-caption{display:none}}
