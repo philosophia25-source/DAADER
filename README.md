@@ -27,3 +27,5 @@ Generated using the built-in image generation tool. Prompt: an editorial photogr
 ## Persian divorce guide
 
 The full article source is `content/fa/divorce-in-iran.md`. The generator publishes it at `/fa/articles/divorce-in-iran/`, with a contents sidebar and native WhatsApp links, and lists it on the Persian homepage and journal. Language links fall back to the relevant journal where no translation exists. The sitemap and alternate-language metadata include only published translations.
+
+The complete Arabic translation is stored in `content/ar/divorce-in-iran.md` and published at `/ar/articles/divorce-in-iran/`. Persian and Arabic article language links and alternate metadata connect the two versions.

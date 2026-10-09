@@ -92,11 +92,21 @@ def markdown_blocks(text):
  flush()
  return ''.join(blocks)
 
-source=(ROOT/'content/fa/divorce-in-iran.md').read_text(encoding='utf8')
-parts=re.split(r'^## (.+)$', source, flags=re.M)
-intro=re.sub(r'^# .+\n\n\*\*.+?\*\*\n\n', '', parts[0], count=1, flags=re.S)
-sections=[(parts[i],markdown_blocks(parts[i+1])) for i in range(1,len(parts),2)]
-ARTICLES.append(dict(slug='divorce-in-iran',category='family',raw_html=True,intro_html=markdown_blocks(intro),reading={'fa':'حدود ۱۵ دقیقه مطالعه'},date={'fa':'به‌روزرسانی ۹ اکتبر ۲۰۲۶'},translations={'fa':('طلاق در ایران، مسیرهای درخواست و مراحل پیگیری در دادگاه','راهنمای درخواست طلاق از سوی زن یا مرد، طلاق توافقی و وکالت در طلاق، با بررسی حقوق مالی، مدارک و مهلت‌ها.',sections)}))
+divorce=dict(slug='divorce-in-iran',category='family',raw_html=True,intro_html={},reading={},date={},translations={})
+article_labels={
+ 'fa':('طلاق در ایران، مسیرهای درخواست و مراحل پیگیری در دادگاه','راهنمای درخواست طلاق از سوی زن یا مرد، طلاق توافقی و وکالت در طلاق، با بررسی حقوق مالی، مدارک و مهلت‌ها.','حدود ۱۵ دقیقه مطالعه','به‌روزرسانی ۹ اکتبر ۲۰۲۶'),
+ 'ar':('الطلاق في إيران، طرق تقديم الطلب ومراحل الإجراءات أمام المحكمة','دليل للطلاق بطلب الزوج أو الزوجة، والطلاق بالاتفاق والوكالة في الطلاق وفق القانون الإيراني، مع الحقوق المالية والمستندات والمواعيد.','قراءة نحو ١٥ دقيقة','آخر تحديث ٩ أكتوبر ٢٠٢٦')
+}
+for lang,labels in article_labels.items():
+ source=(ROOT/'content'/lang/'divorce-in-iran.md').read_text(encoding='utf8')
+ parts=re.split(r'^## (.+)$',source,flags=re.M)
+ intro=re.sub(r'^# [^\n]+\n\n\*\*[^\n]+\*\*\n\n','',parts[0],count=1)
+ sections=[(parts[i],markdown_blocks(parts[i+1])) for i in range(1,len(parts),2)]
+ divorce['translations'][lang]=(labels[0],labels[1],sections)
+ divorce['intro_html'][lang]=markdown_blocks(intro)
+ divorce['reading'][lang]=labels[2]
+ divorce['date'][lang]=labels[3]
+ARTICLES.append(divorce)
 
 def available_articles(lang):
  return [a for a in ARTICLES if lang in a['translations']]
@@ -165,7 +175,7 @@ def about(lang):
 def article(lang,a):
  t=TEXT[lang];title,desc,sections=a['translations'][lang]
  toc=''.join(f'<a href="#part-{i}">{s[0]}</a>' for i,s in enumerate(sections))
- content=a.get('intro_html','')+''.join(f'<section id="part-{i}"><h2>{s[0]}</h2>'+ (s[1] if a.get('raw_html') else '<p>'+s[1]+'</p>')+'</section>' for i,s in enumerate(sections))
+ content=a.get('intro_html',{}).get(lang,'')+''.join(f'<section id="part-{i}"><h2>{s[0]}</h2>'+ (s[1] if a.get('raw_html') else '<p>'+s[1]+'</p>')+'</section>' for i,s in enumerate(sections))
  date=a.get('date',{}).get(lang,t['date']); reading=a.get('reading',{}).get(lang,t['reading'])
  page=shell(lang,title+' | '+t['brand'],desc,f'''<header class="article-head wrap"><a class="breadcrumb" href="{url(lang,'articles/')}">{t['journal']}</a><span class="note-cat">{t[a['category']]}</span><h1>{title}</h1><p>{desc}</p><div class="article-meta"><span>{t['name']}</span><span>{date}</span><span>{reading}</span></div></header><div class="article-surface"><div class="wrap article-layout"><article class="prose">{content}<div class="article-disclaimer">{t['disclaimer']}</div><section class="article-end-contact"><span class="eyebrow">{t['article_contact']}</span><p>{t['article_contact_desc']}</p><button class="button gold" data-contact>{icon('chat')}{t['whatsapp']}</button></section></article><aside class="article-sidebar"><div class="sidebar-inner"><h2>{t['contents']}</h2><nav>{toc}</nav><div class="author-card"><span class="mini-monogram">NJ</span><h3>{t['name']}</h3><p>{t['role']}</p><a href="{url(lang,'about/')}">{t['about']}</a></div><button class="button sidebar-contact" data-contact>{icon('chat')}{t['whatsapp']}</button></div></aside></div></div><section class="section wrap"><div class="slim-heading"><h2>{t['related']}</h2></div><div class="notes-grid two">{cards(lang,[x for x in available_articles(lang) if x!=a][:2])}</div></section>''','articles/'+a['slug']+'/')
  if a.get('raw_html'):
